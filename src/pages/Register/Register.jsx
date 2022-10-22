@@ -1,6 +1,7 @@
 import React from 'react';
 import './Modulo.css';
 import { useEffect,useState } from 'react';
+import { Auth } from '../../hooks/Auth';
 
 const Register = () => {
     const [displayName,setDisplayName]=useState('')
@@ -8,13 +9,16 @@ const Register = () => {
     const [password,setPassword]=useState('')
     const [confirmpassword,setconfirmpassword]=useState('')
     const [msg,setMsg]=useState('')
+//imptand   usr
 
-    const handSubmit=(e)=> {
+    const   {createuser,msg:autherror,loading}=Auth()
+
+    const handSubmit=async(e)=> {
         e.preventDefault()
         setMsg('')
    
 //criand user
-const usr={
+const user={
     displayName,
     displayEmail,
     password
@@ -24,9 +28,10 @@ if(password!==confirmpassword){
     setMsg('Snhas difrnts')
     return
 }
-console.log(usr)
-}
+//console.log(user)
+const res=await  createuser(user)
 
+}
 
     return (
         <div className='register'>

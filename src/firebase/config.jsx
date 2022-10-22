@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFiresStore } from 'firebase/firebase';
+import { getFiresStore } from 'firebase/storage';
 const firebaseConfig = {
   apiKey: "AIzaSyClF10IhbGo2xWddXveWICprtx9vGN9tmw",
   authDomain: "miniblog-react-fe493.firebaseapp.com",

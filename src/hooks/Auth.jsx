@@ -1,3 +1,4 @@
+import  {db}    from    '../firebase/config'
 import{
     getAuth,
     createUserWithEmailAndPassword,
@@ -51,5 +52,9 @@ useEffect(()=>{
     return  ()=>setCancel(true)
 },[])
 
-
+return{
+    auth,
+    crateuser,
+    msg
+}
 }
