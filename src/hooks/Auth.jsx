@@ -1,4 +1,4 @@
-import  {db}    from    '../firebase/config'
+import  {db} from '../firebase/config'
 import{
     getAuth,
     createUserWithEmailAndPassword,
@@ -11,7 +11,7 @@ import{
 import React, { useEffect, useState } from 'react'
 
 export const Auth=()=>{
-    const [msg, setMsg]=useState(null);
+    const [error,seterror]=useState(null);
     const [loading, setLoading]=useState(null);
 
 
@@ -26,12 +26,12 @@ function checkfisCancel(){
 }
 
 //criad usr
-const crateuser=async(data)=>{
+const createuser=async(data)=>{
     checkfisCancel()
 
     setLoading(true)
     try{
-        const{user}= await createUserWithEmailAndPassword(
+        const {user}= await createUserWithEmailAndPassword(
             auth,
             data.email,
             data.password
@@ -42,8 +42,10 @@ await updateProfile(user,{
     })
     return  user;
 
-    }catch(msg){
-        console.log(msg)
+    }catch(error){
+        console.log(error.message)
+        console.log(typeof  error.message)
+
     }
 setLoading(false)
 }
@@ -54,7 +56,8 @@ useEffect(()=>{
 
 return{
     auth,
-    crateuser,
-    msg
+    createuser,
+    error,
+    loading
 }
 }

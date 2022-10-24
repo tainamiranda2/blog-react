@@ -8,14 +8,14 @@ const Register = () => {
     const [displayEmail,setDisplayEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmpassword,setconfirmpassword]=useState('')
-    const [msg,setMsg]=useState('')
+    const [error,seterror]=useState('')
 //imptand   usr
 
-    const   {createuser,msg:autherror,loading}=Auth()
+    const   {createuser,error:auth,loading}=Auth()
 
     const handSubmit=async(e)=> {
         e.preventDefault()
-        setMsg('')
+        seterror('')
    
 //criand user
 const user={
@@ -25,12 +25,12 @@ const user={
 }
 
 if(password!==confirmpassword){
-    setMsg('Snhas difrnts')
+    seterror('Snhas difrnts')
     return
 }
-//console.log(user)
-const res=await  createuser(user)
 
+const res=await createuser(user)
+console.log(res)
 }
 
     return (
@@ -85,7 +85,7 @@ const res=await  createuser(user)
                     />
                </label>
                 <button className='btn'>Cadastrar</button>
-                {msg &&<p className='error'>{msg}</p>}
+                {error &&<p className='error'>{error}</p>}
 
             </form>
         </div>
