@@ -11,7 +11,7 @@ const Register = () => {
     const [error,seterror]=useState('')
 //imptand   usr
 
-    const   {createuser,error:auth,loading}=Auth()
+    const   {createuser,error:autherror,loading}=Auth()
 
     const handSubmit=async(e)=> {
         e.preventDefault()
@@ -25,13 +25,20 @@ const user={
 }
 
 if(password!==confirmpassword){
-    seterror('Snhas difrnts')
+    seterror('Senhas diferentes')
     return
 }
 
 const res=await createuser(user)
 console.log(res)
 }
+
+useEffect(()=> {
+if(autherror){
+    seterror(autherror)
+}
+
+},[autherror])
 
     return (
         <div className='register'>

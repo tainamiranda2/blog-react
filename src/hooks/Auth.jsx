@@ -30,6 +30,7 @@ const createuser=async(data)=>{
     checkfisCancel()
 
     setLoading(true)
+    seterror(null)
     try{
         const {user}= await createUserWithEmailAndPassword(
             auth,
@@ -44,10 +45,24 @@ await updateProfile(user,{
 
     }catch(error){
         console.log(error.message)
-        console.log(typeof  error.message)
+        console.log(typeof error.message)
 
+        let systemerrorMessage;
+
+        if(error.message.includes('Password')){
+            systemerrorMessage="A senha precisa ter 6 caracters"
+        
+        }else  if(error.message.includes('email-already')){
+            systemerrorMessage="email já cadastrado"
+
+        }else{
+            systemerrorMessage="ocorreu um erro, por favor tente mais tarde"
+
+        }
+        seterror(systemerrorMessage)
     }
 setLoading(false)
+
 }
 
 useEffect(()=>{
