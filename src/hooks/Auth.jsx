@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import  {db} from '../firebase/config'
 import{
     getAuth,
@@ -8,7 +9,6 @@ import{
 
 }   from 'firebase/auth';
 
-import React, { useEffect, useState } from 'react'
 
 export const Auth=()=>{
     const [error,seterror]=useState(null);
@@ -41,6 +41,7 @@ const createuser=async(data)=>{
 await updateProfile(user,{
     displayName:data.displayName
     })
+    setLoading(false)
     return  user;
 
     }catch(error){
@@ -59,9 +60,10 @@ await updateProfile(user,{
             systemerrorMessage="ocorreu um erro, por favor tente mais tarde"
 
         }
+        setLoading(false)
         seterror(systemerrorMessage)
     }
-setLoading(false)
+
 
 }
 

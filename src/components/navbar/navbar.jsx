@@ -1,7 +1,11 @@
 import React from 'react';
 import './Modulo.css';
 import { Link } from 'react-router-dom';
+import {Auth} from '../../hooks/Auth';
+import {useAuthValue} from '../../context/AuthContext'
 const Navbar = () => {
+    
+const {user} =useAuthValue()
     return (
               
         <nav className='navbar'>
@@ -17,7 +21,9 @@ const Navbar = () => {
                         Homi
                     </Link>    
                 </li> 
-                <li>
+                {!user &&(
+                    <>
+                    <li>
                     <Link to="/Login" className={({ isActive }) => (isActive ? 'active' : '')}>
                         Entrar
                     </Link>    
@@ -27,6 +33,9 @@ const Navbar = () => {
                         Cadastro
                     </Link>    
                     </li>
+                    </>
+                )}
+                
                     <li>
                     <Link to="/About" className={({ isActive }) => (isActive ? 'active' : '')}>
                         About

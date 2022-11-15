@@ -30,7 +30,11 @@ if(password!==confirmpassword){
 }
 
 const res=await createuser(user)
-console.log(res)
+//console.log(user)
+//console.log(displayEmail)
+//console.log(displayName)
+//console.log(password)
+
 }
 
 useEffect(()=> {
@@ -91,7 +95,8 @@ if(autherror){
                         onChange={(e)=>setconfirmpassword(e.target.value)}
                     />
                </label>
-                <button className='btn'>Cadastrar</button>
+               {!loading &&  <button className='btn'>Cadastrar</button>}
+               {loading &&  <button className='btn' disabled>Aguarde</button>}
                 {error &&<p className='error'>{error}</p>}
 
             </form>
