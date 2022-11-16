@@ -36,6 +36,21 @@ const {user} =useAuthValue()
                     </>
                 )}
                 
+                {user && (
+                 <>
+                 <li>
+                 <Link to="/Posts/Create" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    Novo post
+                 </Link>    
+             </li>
+             <li>
+                 <Link to="/Dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
+                     Dashboard
+                 </Link>    
+                 </li>
+                 </>
+             )}
+            
                     <li>
                     <Link to="/About" className={({ isActive }) => (isActive ? 'active' : '')}>
                         About

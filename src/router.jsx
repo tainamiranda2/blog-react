@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 
 import  About  from './pages/About/About'
 import Navbar   from './components/navbar/navbar'
@@ -10,6 +10,8 @@ import Register from './pages/Register/Register'
 import { AuthProvider } from './context/AuthContext';
 import { Auth } from './hooks/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import Post from './pages/gerenciamento/create/post';
+import Dashboard from './pages/dashboard/Dashboard';
 
 export const Router=()=>{
 
@@ -36,10 +38,22 @@ export const Router=()=>{
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/About" element={<About />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Register" element={<Register />} />
-
-
+            <Route 
+            path="/Login" 
+            element={!user?<Login/>:<Navigate to="/"/>} 
+            />
+            <Route 
+            path="/Register" 
+            element={!user? <Register/>:<Navigate to="/"/>} 
+            />
+            <Route
+             path="/Posts/Create" 
+            element={user?<Post/>:<Navigate to="/login"/>} 
+            />
+            <Route 
+            path="/Dashboard" 
+            element={user?<Dashboard/>:<Navigate to="/login"/>}
+             />
           </Routes>
           </div>
         </BrowserRouter>
