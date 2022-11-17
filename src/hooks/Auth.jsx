@@ -66,7 +66,33 @@ await updateProfile(user,{
 
 
 }
+//logoun
+const  logout=()=>{
+checkfisCancel();
+signOut(auth)
+}
+//login
+const login=async(data)=>{
+    checkfisCancel()
+    setLoading(true)
+    seterror(false)
+    try{
+await signInWithEmailAndPassword(auth, data.email, data.password)
 
+setLoading(false)
+}catch(error){
+    let systemerrorMessage;
+
+    if(error.message.includes('user-not-found')){
+       systemerrorMessage="Usuário não encontrado"
+    }else if(error.message.includes('wrong-password')){
+        systemerrorMessage="Senha não encontrado"
+    }else{
+        systemerrorMessage="Ocorreu um ero, por favor tente mais tarde"
+    }
+    seterror(systemerrorMessage)
+    }
+}
 useEffect(()=>{
     return  ()=>setCancel(true)
 },[])
@@ -75,6 +101,8 @@ return{
     auth,
     createuser,
     error,
-    loading
+    loading,
+    logout,
+    login
 }
 }
