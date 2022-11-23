@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modulo.css';
-import { Link } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 import {Auth} from '../../hooks/Auth';
 import {useAuthValue} from '../../context/AuthContext'
 const Navbar = () => {
@@ -12,27 +12,27 @@ const {logout}=Auth()
         <nav className='navbar'>
                 
                    
-                <Link className='brand' to="/">
+                <NavLink className='brand' to="/">
                     Mini <span>Blog</span>
-                </Link>
+                </NavLink>
             
            <ul className='links_list'>
             <li >
-                    <Link to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
                         Homi
-                    </Link>    
+                    </NavLink>    
                 </li> 
                 {!user &&(
                     <>
                     <li>
-                    <Link to="/Login" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    <NavLink to="/Login" className={({ isActive }) => (isActive ? 'active' : '')}>
                         Entrar
-                    </Link>    
+                    </NavLink>    
                 </li>
                 <li>
-                    <Link to="/Register" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    <NavLink to="/Register" className={({ isActive }) => (isActive ? 'active' : '')}>
                         Cadastro
-                    </Link>    
+                    </NavLink>    
                     </li>
                     </>
                 )}
@@ -40,22 +40,22 @@ const {logout}=Auth()
                 {user && (
                  <>
                  <li>
-                 <Link to="/Posts/Create" className={({ isActive }) => (isActive ? 'active' : '')}>
+                 <NavLink to="/Posts/Create" className={({ isActive }) => (isActive ? 'active' : '')}>
                     Novo post
-                 </Link>    
+                 </NavLink>    
              </li>
              <li>
-                 <Link to="/Dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
+                 <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
                      Dashboard
-                 </Link>    
+                 </NavLink>    
                  </li>
                  </>
              )}
             
                     <li>
-                    <Link to="/About" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    <NavLink to="/About" className={({ isActive }) => (isActive ? 'active' : '')}>
                         About
-                    </Link>    
+                    </NavLink>    
                     </li>
                     {user && (
                         <li>

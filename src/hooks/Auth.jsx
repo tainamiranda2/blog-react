@@ -88,7 +88,7 @@ setLoading(false)
     }else if(error.message.includes('wrong-password')){
         systemerrorMessage="Senha não encontrado"
     }else{
-        systemerrorMessage="Ocorreu um ero, por favor tente mais tarde"
+        systemerrorMessage="Ocorreu um erro, por favor tente mais tarde"
     }
     seterror(systemerrorMessage)
     }
