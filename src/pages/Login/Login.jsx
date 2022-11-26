@@ -5,7 +5,7 @@ import { Auth } from '../../hooks/Auth';
 
 const Login = () => {
     
-    const [displayEmail,setDisplayEmail]=useState('')
+    const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     
     const [error,seterror]=useState()
@@ -19,7 +19,7 @@ const   {login,error:autherror,loading}=Auth()
    
 //criand user
 
-const user={displayEmail,password}
+const user={email,password}
 const res=await login(user)
 
 }
@@ -41,11 +41,11 @@ if(autherror){
                     <span>Email:</span>
                     <input
                         type="email"
-                        name='displayEmail'
+                        name='email'
                         required
                         placeholder='Email do usuário'
-                        value={displayEmail}
-                        onChange={(e)=>setDisplayEmail(e.target.value)}
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                     />
                     
                 </label>

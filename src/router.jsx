@@ -4,14 +4,15 @@ import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import  About  from './pages/About/About'
 import Navbar   from './components/navbar/navbar'
 import Home  from './pages/Home/Home';
+import Post from './pages/gerenciamento/create/post';
+import Dashboard from './pages/dashboard/Dashboard';
 //import useAuth from './hooks/useAuth';
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import { AuthProvider } from './context/AuthContext';
 import { Auth } from './hooks/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
-import Post from './pages/gerenciamento/create/post';
-import Dashboard from './pages/dashboard/Dashboard';
+
 
 export const Router=()=>{
 

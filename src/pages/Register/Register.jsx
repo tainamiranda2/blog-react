@@ -5,7 +5,7 @@ import { Auth } from '../../hooks/Auth';
 
 const Register = () => {
     const [displayName,setDisplayName]=useState('')
-    const [displayEmail,setDisplayEmail]=useState('')
+    const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmpassword,setconfirmpassword]=useState('')
     const [error,seterror]=useState('')
@@ -20,7 +20,7 @@ const Register = () => {
 //criand user
 const user={
     displayName,
-    displayEmail,
+    email,
     password
 }
 
@@ -65,11 +65,11 @@ if(autherror){
                     <span>Email:</span>
                     <input
                         type="email"
-                        name='displayEmail'
+                        name='email'
                         required
                         placeholder='Email do usuário'
-                        value={displayEmail}
-                        onChange={(e)=>setDisplayEmail(e.target.value)}
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                     />
                     
                 </label>

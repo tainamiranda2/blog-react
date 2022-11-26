@@ -4,9 +4,8 @@ import{
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    updateProfile,
     signOut,
-    updateProfile
-
 }   from 'firebase/auth';
 
 
@@ -19,6 +18,7 @@ export const Auth=()=>{
 const [cancel,setCancel]=useState(false)
 
 const auth =getAuth();
+
 function checkfisCancel(){
     if(cancel){
         return
@@ -30,7 +30,7 @@ const createuser=async(data)=>{
     checkfisCancel()
 
     setLoading(true)
-    seterror(null)
+    //seterror(null)
     try{
         const {user}= await createUserWithEmailAndPassword(
             auth,
@@ -38,10 +38,10 @@ const createuser=async(data)=>{
             data.password
         )
 
-await updateProfile(user,{
-    displayName:data.displayName
+        await updateProfile(user,{
+    displayName: data.displayName
     })
-    setLoading(false)
+   // setLoading(false)
     return  user;
 
     }catch(error){
@@ -50,21 +50,21 @@ await updateProfile(user,{
 
         let systemerrorMessage;
 
-        if(error.message.includes('Password')){
+        if(error.message.includes("Password")){
             systemerrorMessage="A senha precisa ter 6 caracters"
         
-        }else  if(error.message.includes('email-already')){
+        }else  if(error.message.includes("email-already")){
             systemerrorMessage="email já cadastrado"
 
         }else{
             systemerrorMessage="ocorreu um erro, por favor tente mais tarde"
 
         }
-        setLoading(false)
+       
         seterror(systemerrorMessage)
     }
 
-
+    setLoading(false)
 }
 //logoun
 const  logout=()=>{
@@ -79,19 +79,22 @@ const login=async(data)=>{
     try{
 await signInWithEmailAndPassword(auth, data.email, data.password)
 
-setLoading(false)
+setLoading(true)
+seterror(false)
 }catch(error){
     let systemerrorMessage;
 
     if(error.message.includes('user-not-found')){
        systemerrorMessage="Usuário não encontrado"
     }else if(error.message.includes('wrong-password')){
-        systemerrorMessage="Senha não encontrado"
+        systemerrorMessage="Senha incorreta"
     }else{
         systemerrorMessage="Ocorreu um erro, por favor tente mais tarde"
     }
     seterror(systemerrorMessage)
+   // setLoading(false)
     }
+    
 }
 useEffect(()=>{
     return  ()=>setCancel(true)

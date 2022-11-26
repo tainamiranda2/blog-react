@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modulo.css';
-import { Link,NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {Auth} from '../../hooks/Auth';
 import {useAuthValue} from '../../context/AuthContext'
 const Navbar = () => {
