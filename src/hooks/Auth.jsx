@@ -79,8 +79,7 @@ const login=async(data)=>{
     try{
 await signInWithEmailAndPassword(auth, data.email, data.password)
 
-setLoading(true)
-seterror(false)
+
 }catch(error){
     let systemerrorMessage;
 
@@ -91,10 +90,11 @@ seterror(false)
     }else{
         systemerrorMessage="Ocorreu um erro, por favor tente mais tarde"
     }
+    console.log(error)
     seterror(systemerrorMessage)
    // setLoading(false)
     }
-    
+    setLoading(false)
 }
 useEffect(()=>{
     return  ()=>setCancel(true)
