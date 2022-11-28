@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authFetchDocuments } from '../../hooks/AuthFetchDocuments';
 import './Modulo.css';
 const Home = () => {
 const [query,setQuery]=useState("")
-const [posts]=useState([])
+const {documents:posts, loading}=authFetchDocuments("posts")
+
+
 const handleSubmit=(e)=>{
     e.preventDefault()
 }
@@ -24,6 +27,9 @@ const handleSubmit=(e)=>{
             </form>
             <div>
                 <h1>Post ...</h1>
+                {posts && posts.map((post)=>{
+                    <h3>{post.title}</h3>
+                })}
                 {posts && posts.length===0 &&(
                     <div className='noposts'>
                         <p>Não foram encontrados posts</p>

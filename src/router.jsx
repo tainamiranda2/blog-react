@@ -26,10 +26,10 @@ export const Router=()=>{
     })
    }, [auth])
 
-   if(loadingUSer){
-    return <p>Carregando</p>
+  /* if(loadingUSer){
+    return <p>Carregando ...</p>
    }
-
+*/
     return(
     <AuthProvider value={{user}}>
         <BrowserRouter>
