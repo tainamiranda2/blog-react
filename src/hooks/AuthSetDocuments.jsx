@@ -1,9 +1,8 @@
 
 import {db} from '../firebase/config'
-import {collection, addDoc, Timestamp} from 'firebase/firestore'
-import { useReducer } from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import {collection, addDoc, Timestamp,} from 'firebase/firestore'
+import { useReducer,useEffect,useState  } from 'react'
+
 
 
 const initialState={

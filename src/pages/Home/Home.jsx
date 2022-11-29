@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authFetchDocuments } from '../../hooks/AuthFetchDocuments';
 import './Modulo.css';
+
+//components
+import PostDetail from '../../components/postdetail/postdetail';
+
 const Home = () => {
 const [query,setQuery]=useState("")
 const {documents:posts, loading}=authFetchDocuments("posts")
@@ -26,9 +30,9 @@ const handleSubmit=(e)=>{
                     </button>
             </form>
             <div>
-                <h1>Post ...</h1>
+               {loading && <p>Carrregando ...</p>}
                 {posts && posts.map((post)=>{
-                    <h3>{post.title}</h3>
+                    <PostDetail key={post.id} post={post} />
                 })}
                 {posts && posts.length===0 &&(
                     <div className='noposts'>
