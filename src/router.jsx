@@ -12,6 +12,7 @@ import Register from './pages/Register/Register'
 import { AuthProvider } from './context/AuthContext';
 import { Auth } from './hooks/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import Search from './pages/gerenciamento/search/search';
 
 
 export const Router=()=>{
@@ -19,7 +20,9 @@ export const Router=()=>{
   const [user,setUser]=useState(undefined)
    const {auth}=Auth()
 
+
    const loadingUSer=user===undefined
+   
    useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{
       setUser(user)
@@ -39,6 +42,8 @@ export const Router=()=>{
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/About" element={<About />} />
+            <Route path="/Search" element={<Search />} />
+
             <Route 
             path="/Login" 
             element={!user?<Login/>:<Navigate to="/"/>} 
