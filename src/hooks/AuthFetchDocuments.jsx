@@ -10,7 +10,7 @@ import { useState,useEffect } from 'react'
 export const authFetchDocuments=(docCollection, search=null, uid=null)=>{
 const [documents, setDocuments]=useState(null)
 const [error, setError]=useState(null)
-const [loading, setLoading]=useState(null)
+//const [loading, setLoading]=useState(null)
 
 
 const [calcel, setCalcel]=useState(false)
@@ -20,7 +20,7 @@ async function lodData(){
     if(calcel) {
         return
 }
-setLoading(true)
+//setLoading(true)
     const collectionRef=await collection(db, docCollection)
 
     try{
@@ -50,15 +50,16 @@ if(search){
         setError(error.message)
        
     }
-    setLoading(false)
+    //setLoading(false)
 }
 lodData()
 
 },[docCollection,search,uid, calcel])
+console.log(documents)
 
 useEffect(()=>{
     return()=>setCalcel(true)
 },[])
 
-return {documents, loading, error};
+return {documents,  error};
 }

@@ -9,7 +9,8 @@ import PostDetail from '../../components/postdetail/postdetail';
 
 const Home = () => {
 const [query,setQuery]=useState("")
-const {documents:posts, loading}=authFetchDocuments("posts")
+const {documents:posts}=authFetchDocuments("posts")
+//console.log("aou a home",posts.length)
 
 const navigate=useNavigate()
 const handleSubmit=(e)=>{
@@ -18,6 +19,7 @@ const handleSubmit=(e)=>{
         return navigate(`search?q=${query}`)
     }
 }
+//console.log(loading)
     return (
         <div className='home'>
           
@@ -33,19 +35,33 @@ const handleSubmit=(e)=>{
                     </button>
             </form>
             <div>
-               {loading && <p>Carrregando ...</p>}
-                {posts && posts.map((post)=>{
-                    <PostDetail key={post.id} post={post} />
-                })}
-                {posts && posts.length===0 &&(
-                    <div className='noposts'>
-                        <p>Não foram encontrados posts</p>
+             
+            { posts? (
 
-                    <Link className='btn' to="/posts/create">
-                        Criar primeiro post
-                        </Link>
-                    </div>
-                )}
+ <>
+ {posts.map((testes)=>(
+<div className='post_detail'>
+<img src={testes.image} alt={testes.title}/>
+<h2>{testes.title}</h2>
+<p classname="">{testes.createdBy}</p>
+<div classname="tags">
+    <p>
+              <span>{testes.tags}</span>  
+              </p>
+            </div>
+            <Link to={`/posts/${testes.id}`} className="btn btn-outline">Ler</Link>
+</div>
+               
+ ))}
+
+ </>
+
+            ):(
+                <>
+               Não tem post ainda
+                </>
+            )}
+  
             </div>
         </div>
     )
