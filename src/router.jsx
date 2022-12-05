@@ -13,6 +13,7 @@ import { AuthProvider } from './context/AuthContext';
 import { Auth } from './hooks/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import Search from './pages/gerenciamento/search/search';
+import { Postindividual } from './pages/gerenciamento/post/PostIndividual';
 
 
 export const Router=()=>{
@@ -43,7 +44,7 @@ export const Router=()=>{
             <Route path="/" element={<Home/>} />
             <Route path="/About" element={<About />} />
             <Route path="/Search" element={<Search />} />
-
+            <Route path="/post/:id" element={<Postindividual />} />
             <Route 
             path="/Login" 
             element={!user?<Login/>:<Navigate to="/"/>} 
