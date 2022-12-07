@@ -84,3 +84,7 @@ button[disabled]{
 .container .error{
   color: #ec1111;
 }
+.btn.btn-darger{
+ background:  #ec1111; 
+
+}
