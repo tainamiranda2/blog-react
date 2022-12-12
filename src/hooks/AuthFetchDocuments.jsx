@@ -62,7 +62,7 @@ if(search){
 lodData()
 
 },[docCollection,search,uid, calcel])
-console.log(documents)
+//console.log(documents)
 
 useEffect(()=>{
     return()=>setCalcel(true)
