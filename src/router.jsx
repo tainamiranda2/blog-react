@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 
+import { AuthProvider } from './context/AuthContext';
+import { Auth } from './hooks/Auth';
+import { onAuthStateChanged } from 'firebase/auth';
+
 import  About  from './pages/About/About'
 import Navbar   from './components/navbar/navbar'
 import Home  from './pages/Home/Home';
@@ -9,11 +13,10 @@ import Dashboard from './pages/dashboard/Dashboard';
 //import useAuth from './hooks/useAuth';
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
-import { AuthProvider } from './context/AuthContext';
-import { Auth } from './hooks/Auth';
-import { onAuthStateChanged } from 'firebase/auth';
+
 import Search from './pages/gerenciamento/search/search';
-import { Postindividual } from './pages/gerenciamento/post/PostIndividual';
+//import Postindividual from './pages/gerenciamento/post/PostIndividual';
+import Edit from './pages/gerenciamento/edit/Edit';
 
 
 export const Router=()=>{
@@ -44,7 +47,7 @@ export const Router=()=>{
             <Route path="/" element={<Home/>} />
             <Route path="/About" element={<About />} />
             <Route path="/Search" element={<Search />} />
-            <Route path="/post/:id" element={<Postindividual />} />
+            
             <Route 
             path="/Login" 
             element={!user?<Login/>:<Navigate to="/"/>} 
@@ -56,6 +59,10 @@ export const Router=()=>{
             <Route
              path="/Posts/Create" 
             element={user?<Post/>:<Navigate to="/login"/>} 
+            />
+              <Route
+             path="/Posts/edit/:id" 
+            element={user?<Edit/>:<Navigate to="/login"/>} 
             />
             <Route 
             path="/Dashboard" 

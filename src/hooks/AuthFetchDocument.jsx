@@ -31,12 +31,8 @@ console.log(erro)
 }
 lodDocument()
 
-},[docCollection,search,uid, calcel])
-console.log(document)
-
-useEffect(()=>{
-    return()=>setCalcel(true)
-},[])
+},[docCollection,id])
+//console.log(document)
 
 return {document,  error};
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-//import styles from './Modulo.css';
+import './Modulo.css';
 import { useEffect,useState } from 'react';
 import { Auth } from '../../hooks/Auth';
 
@@ -31,7 +31,7 @@ if(autherror){
 
 },[autherror])
     return (
-        <>
+        <div className='login'>
            <h1>Entrar</h1>
            <p>Faça o login para utlizar o sistema</p>
             <form onSubmit={handSubmit}>
@@ -66,7 +66,7 @@ if(autherror){
                 {error &&<p className='error'>{error}</p>}
 
             </form>
-        </>
+        </div>
     )
 }
 
